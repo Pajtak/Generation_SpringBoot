@@ -28,12 +28,12 @@ public class Postagem {
 	private long id;
 
 	@NotNull
-	@Size(min = 5, max = 100)
+	@Size(min = 5, max = 100, message = "O texto deve ter um máximo de 100 e um mínimo de 5 caracteres")
 	@NotEmpty
 	private String titulo;
 
 	@NotBlank
-	@Size(min = 20, max = 2000)
+	@Size(min = 20, max = 2000, message = "O texto deve ter um máximo de 2000 e um mínimo de 20 caracteres")
 	private String texto;
 
 	@Temporal(TemporalType.TIMESTAMP)
