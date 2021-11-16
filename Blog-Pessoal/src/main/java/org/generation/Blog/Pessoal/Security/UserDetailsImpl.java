@@ -1,6 +1,7 @@
 package org.generation.Blog.Pessoal.Security;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.generation.Blog.Pessoal.model.UsuarioModel;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,8 @@ public class UserDetailsImpl implements UserDetails {
 	private String userName;
 
 	private String password;
+	
+	private List<GrantedAuthority> authorities;
 
 	public UserDetailsImpl(UsuarioModel user) {
 		this.userName = user.getUsuario();
@@ -24,8 +27,8 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return authorities;
 	}
 
 	@Override

@@ -48,12 +48,20 @@ public class TemaController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Tema> put(@RequestBody Tema tema){
-		return ResponseEntity.ok(repository.save(tema));
+	public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema tema) {
+		return repository.findById(tema.getId())
+			.map(resp -> ResponseEntity.status(HttpStatus.OK).body(repository.save(tema)))
+			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
-	
-	@DeleteMapping ("/{id}")
-	public void delete (@PathVariable Long id) {
-		repository.deleteById(id);
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteTema(@PathVariable long id) {
+		return repository.findById(id)
+			.map(resposta -> {
+				repository.deleteById(id);
+				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			})
+			.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
+
 }

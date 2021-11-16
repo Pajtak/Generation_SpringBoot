@@ -1,13 +1,15 @@
 package org.generation.Blog.Pessoal.model;
 
 public class UsuarioLoginModel {
-	
+
+	private long IdUsuario;
+
 	private String nome;
-	
+
 	private String usuario;
-	
+
 	private String senha;
-	
+
 	private String token;
 
 	public String getNome() {
@@ -41,6 +43,12 @@ public class UsuarioLoginModel {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
 
+	public long getIdUsuario() {
+		return IdUsuario;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		IdUsuario = idUsuario;
+	}
 }
