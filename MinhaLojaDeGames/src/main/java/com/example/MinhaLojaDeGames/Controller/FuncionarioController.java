@@ -1,15 +1,10 @@
-package org.generation.Blog.Pessoal.controller;
-
+package com.example.MinhaLojaDeGames.Controller;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.generation.Blog.Pessoal.Service.UsuarioService;
-import org.generation.Blog.Pessoal.model.UsuarioLoginModel;
-import org.generation.Blog.Pessoal.model.UsuarioModel;
-import org.generation.Blog.Pessoal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,45 +16,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.MinhaLojaDeGames.Model.FuncionarioLoginModel;
+import com.example.MinhaLojaDeGames.Model.FuncionarioModel;
+import com.example.MinhaLojaDeGames.Repository.FuncionarioRepository;
+import com.example.MinhaLojaDeGames.Service.FuncionarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/funcionarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UsuarioController {
+public class FuncionarioController {
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private FuncionarioService FuncionarioService;
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private FuncionarioRepository FuncionarioRepository;
 	
 	@GetMapping("/all")
-	public ResponseEntity <List<UsuarioModel>> getAll(){
+	public ResponseEntity <List<FuncionarioModel>> getAll(){
 		
-		return ResponseEntity.ok(usuarioRepository.findAll());
+		return ResponseEntity.ok(FuncionarioRepository.findAll());
 		
 	}
 	
 	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLoginModel> loginUsuario(@RequestBody Optional <UsuarioLoginModel> usuarioLogin){
+	public ResponseEntity<FuncionarioLoginModel> loginFuncionario(@RequestBody Optional <FuncionarioLoginModel> FuncionarioLogin){
 		
-		return usuarioService.autenticarUsuario(usuarioLogin)
+		return FuncionarioService.autenticarFuncionario(FuncionarioLogin)
 			.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
 			.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<UsuarioModel> postUsuario(@Valid @RequestBody UsuarioModel usuario){
+	public ResponseEntity<FuncionarioModel> postFuncionario(@Valid @RequestBody FuncionarioModel Funcionario){
 		
-		return usuarioService.cadastrarUsuario(usuario)
+		return FuncionarioService.cadastrarFuncionario(Funcionario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
 			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 	
 	@PutMapping("/atualizar")
-	public ResponseEntity<UsuarioModel> putUsuario(@Valid @RequestBody UsuarioModel usuario){		
-		return usuarioService.atualizarUsuario(usuario)
+	public ResponseEntity<FuncionarioModel> putFuncionario(@Valid @RequestBody FuncionarioModel Funcionario){		
+		return FuncionarioService.atualizarFuncionario(Funcionario)
 			.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}

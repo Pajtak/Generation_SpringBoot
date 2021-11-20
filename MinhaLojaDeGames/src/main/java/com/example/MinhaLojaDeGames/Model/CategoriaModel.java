@@ -18,24 +18,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "tb_categoria")
 @Valid
 public class CategoriaModel {
-	
-	public CategoriaModel() {}
-	
 
+	public CategoriaModel() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_categoria;
-	
+
 	@NotBlank
 	private String titulo;
-	
+
 	@NotBlank
 	private String plataforma;
-	
+
 	@NotBlank
 	private String genero;
-	
+
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
 	private List<ProdutoModel> produto;
@@ -79,9 +78,5 @@ public class CategoriaModel {
 	public void setProduto(List<ProdutoModel> produto) {
 		this.produto = produto;
 	}
-	
+
 }
-
-
-
-

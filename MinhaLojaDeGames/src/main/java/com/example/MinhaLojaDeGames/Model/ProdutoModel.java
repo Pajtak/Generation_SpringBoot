@@ -23,26 +23,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Valid
 public class ProdutoModel {
 
-	public ProdutoModel() {}
+	public ProdutoModel() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_produto;
-	
+
 	@NotBlank
 	private String titulo;
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	@NotNull
 	@Positive(message = "O preço deve ser maior do que 0")
 	private BigDecimal preco;
-	
+
 	@NotNull
 	@Range(min = 0)
 	private Integer quantidade;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
 	private CategoriaModel categoria;
 
+	@ManyToOne
+	@JsonIgnoreProperties("produtos")
+	private FuncionarioModel funcionario;
 
 	public long getId_produto() {
 		return id_produto;
@@ -63,9 +68,9 @@ public class ProdutoModel {
 	public BigDecimal getPreco() {
 		return preco;
 	}
-	
+
 	public void setPreco(BigDecimal preco) {
-			this.preco = preco;
+		this.preco = preco;
 	}
 
 	public CategoriaModel getFk_categoria() {
@@ -79,8 +84,25 @@ public class ProdutoModel {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+
 	public Integer getQuantidade() {
 		return quantidade;
+	}
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
+	}
+
+	public FuncionarioModel getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(FuncionarioModel funcionario) {
+		this.funcionario = funcionario;
 	}
 
 }

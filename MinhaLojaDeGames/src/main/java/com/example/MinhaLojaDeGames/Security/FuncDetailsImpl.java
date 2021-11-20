@@ -1,28 +1,29 @@
-package org.generation.Blog.Pessoal.Security;
+package com.example.MinhaLojaDeGames.Security;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.generation.Blog.Pessoal.model.UsuarioModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class UserDetailsImpl implements UserDetails {
+import com.example.MinhaLojaDeGames.Model.FuncionarioModel;
+
+public class FuncDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	private String userName;
+	private String funcionarioName;
 
 	private String password;
 	
 	private List<GrantedAuthority> authorities;
 
-	public UserDetailsImpl(UsuarioModel user) {
-		this.userName = user.getUsuario();
-		this.password = user.getSenha();
+	public FuncDetailsImpl(FuncionarioModel funcionario) {
+		this.funcionarioName = funcionario.getLogin();
+		this.password = funcionario.getSenha();
 	}
 
-	public UserDetailsImpl() {
+	public FuncDetailsImpl() {
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return userName;
+		return funcionarioName;
 	}
 
 	@Override

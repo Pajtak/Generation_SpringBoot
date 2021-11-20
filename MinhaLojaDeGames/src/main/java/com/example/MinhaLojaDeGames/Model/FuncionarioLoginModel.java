@@ -1,16 +1,24 @@
-package org.generation.Blog.Pessoal.model;
+package com.example.MinhaLojaDeGames.Model;
 
-public class UsuarioLoginModel {
+public class FuncionarioLoginModel {
 
-	private long IdUsuario;
+	private long id;
 
 	private String nome;
 
-	private String usuario;
+	private String login;
 
 	private String senha;
 
 	private String token;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -20,12 +28,12 @@ public class UsuarioLoginModel {
 		this.nome = nome;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {
@@ -44,11 +52,4 @@ public class UsuarioLoginModel {
 		this.token = token;
 	}
 
-	public long getIdUsuario() {
-		return IdUsuario;
-	}
-
-	public void setIdUsuario(long idUsuario) {
-		IdUsuario = idUsuario;
-	}
 }
